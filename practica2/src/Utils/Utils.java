@@ -205,16 +205,17 @@ public class Utils {
         return num;
     }
 
-    public static void crear_document(String missatge, String nom) throws IOException {
+    public static File crear_document(String missatge, String nom) throws IOException {
         System.out.println(missatge);
         File arxiu = new File("./" + nom + ".txt");
         FileWriter writer = new FileWriter(arxiu, true);
         PrintWriter printer = new PrintWriter(writer);
 
         writer.close();
+        return arxiu;
     }
 
-    static void escriure(File arxiu, FileWriter writer, PrintWriter printer) throws IOException {
+    static File escriure_document(File arxiu, FileWriter writer, PrintWriter printer) throws IOException {
         String frase;
 
         frase = Utils.LlegirString("S'afegirà al fitxer text: ");
@@ -222,8 +223,9 @@ public class Utils {
         printer.println(frase);
 
         writer.close();
+        return arxiu;
     }
-    static void mostrar(File arxiu) throws FileNotFoundException, IOException {
+    static File mostrar_document(File arxiu) throws FileNotFoundException, IOException {
         FileReader reader = new FileReader(arxiu);
         BufferedReader buffer = new BufferedReader(reader);
         String linea = buffer.readLine();
@@ -232,6 +234,20 @@ public class Utils {
             linea = buffer.readLine();
         }
         reader.close();
+        return arxiu;
+    }
+    static File mostrarLinea_document(File arxiu) throws FileNotFoundException, IOException {
+        FileReader reader = new FileReader(arxiu);
+        BufferedReader buffer = new BufferedReader(reader);
+        String linea = buffer.readLine();
+        int liniaUser = Utils.LlegirIntLimitat("Digues la linea que vols que llegeixi: ", 0, 999999999);
+        for (int i = 1; i < liniaUser; i++) {
+
+            linea = buffer.readLine();
+        }
+        System.out.println(linea);
+        reader.close();
+        return arxiu;
     }
 
 // </editor-fold>
