@@ -205,8 +205,8 @@ public class Utils {
         return num;
     }
 
-    public static File crear_document(String missatge, String nom) throws IOException {
-        System.out.println(missatge);
+    public static File crear_document() throws IOException {
+        String nom = Utils.LlegirString("Digues el nom de l'arxiu: ");
         File arxiu = new File("./" + nom + ".txt");
         FileWriter writer = new FileWriter(arxiu, true);
         PrintWriter printer = new PrintWriter(writer);
@@ -222,10 +222,11 @@ public class Utils {
         frase = Utils.LlegirString("S'afegirà al fitxer text: ");
 
         printer.println(frase);
-        
+
         writer.close();
         return arxiu;
     }
+
     static File mostrar_document(File arxiu) throws FileNotFoundException, IOException {
         FileReader reader = new FileReader(arxiu);
         BufferedReader buffer = new BufferedReader(reader);
@@ -237,6 +238,7 @@ public class Utils {
         reader.close();
         return arxiu;
     }
+
     static File mostrarLinea_document(File arxiu) throws FileNotFoundException, IOException {
         FileReader reader = new FileReader(arxiu);
         BufferedReader buffer = new BufferedReader(reader);
@@ -249,6 +251,25 @@ public class Utils {
         System.out.println(linea);
         reader.close();
         return arxiu;
+    }
+
+    static String printfCasero(int tamanoMax, String missatge) {
+        boolean tamano = true;
+        String result = "";
+        int tamanoMissatge = missatge.length();
+        if (tamanoMissatge > tamanoMax) {
+            tamano = false;
+        } else {
+            for (int i = 0; i < tamanoMissatge - 1; i++) {
+                result = result + missatge.charAt(i);
+            }
+            for (int j = tamanoMissatge; j < tamanoMax + 1; j++) {
+                result = result + " ";
+            }
+
+        }
+
+        return result;
     }
 
 // </editor-fold>
