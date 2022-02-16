@@ -215,13 +215,14 @@ public class Utils {
         return arxiu;
     }
 
-    static File escriure_document(File arxiu, FileWriter writer, PrintWriter printer) throws IOException {
+    static File escriure_document(File arxiu) throws IOException {
         String frase;
-
+        FileWriter writer = new FileWriter(arxiu, true);
+        PrintWriter printer = new PrintWriter(writer);
         frase = Utils.LlegirString("S'afegirà al fitxer text: ");
 
         printer.println(frase);
-
+        
         writer.close();
         return arxiu;
     }
