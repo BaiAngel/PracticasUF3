@@ -215,11 +215,10 @@ public class Utils {
         return arxiu;
     }
 
-    static File escriure_document(File arxiu) throws IOException {
-        String frase;
+    public static File escriure_document(File arxiu, String frase) throws IOException {
+
         FileWriter writer = new FileWriter(arxiu, true);
         PrintWriter printer = new PrintWriter(writer);
-        frase = Utils.LlegirString("S'afegirà al fitxer text: ");
 
         printer.println(frase);
 
@@ -227,7 +226,7 @@ public class Utils {
         return arxiu;
     }
 
-    static File mostrar_document(File arxiu) throws FileNotFoundException, IOException {
+    public static File mostrar_document(File arxiu) throws FileNotFoundException, IOException {
         FileReader reader = new FileReader(arxiu);
         BufferedReader buffer = new BufferedReader(reader);
         String linea = buffer.readLine();
@@ -239,11 +238,11 @@ public class Utils {
         return arxiu;
     }
 
-    static File mostrarLinea_document(File arxiu) throws FileNotFoundException, IOException {
+    public static File mostrarLinea_document(File arxiu, int liniaUser) throws FileNotFoundException, IOException {
         FileReader reader = new FileReader(arxiu);
         BufferedReader buffer = new BufferedReader(reader);
         String linea = buffer.readLine();
-        int liniaUser = Utils.LlegirIntLimitat("Digues la linea que vols que llegeixi: ", 0, 999999999);
+
         for (int i = 1; i < liniaUser; i++) {
 
             linea = buffer.readLine();
@@ -253,17 +252,15 @@ public class Utils {
         return arxiu;
     }
 
-    static String printfCasero(int tamanoMax, String missatge) {
+    public static String printfCasero(int tamanoMax, String missatge) {
         boolean tamano = true;
-        String result = "";
+        String result = missatge;
         int tamanoMissatge = missatge.length();
         if (tamanoMissatge > tamanoMax) {
             tamano = false;
         } else {
-            for (int i = 0; i < tamanoMissatge - 1; i++) {
-                result = result + missatge.charAt(i);
-            }
-            for (int j = tamanoMissatge; j < tamanoMax + 1; j++) {
+            
+            for (int j = tamanoMissatge; j < (tamanoMax + 1); j++) {
                 result = result + " ";
             }
 
